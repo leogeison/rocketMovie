@@ -12,7 +12,25 @@ export const Container = styled.header`
   display: flex;
   justify-content: space-between;
 
-  padding: 0 80px;
+  padding: 0 123px;
+`;
+
+export const Search = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 64px;
+  flex-grow: 1;
+`;
+
+export const Brand = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > h1 {
+    font-size: 24px;
+    color: ${({ theme }) => theme.COLORS.SALMON};
+  }
 `;
 
 export const Profile = styled.div`
@@ -30,7 +48,6 @@ export const Profile = styled.div`
     flex-direction: column;
     margin-right: 9px;
     line-height: 18px;
-
 
     strong {
       font-size: 14px;

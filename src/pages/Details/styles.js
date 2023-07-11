@@ -19,7 +19,6 @@ export const Container = styled.div`
 
   > main::-webkit-scrollbar {
       width: 8px;
-      
     
     }
     
@@ -33,8 +32,8 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  max-width: 1137px;
-  margin: 0 auto;
+  
+  margin: 0 123px;
 
   display: flex;
   flex-direction: column;
