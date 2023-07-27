@@ -1,6 +1,9 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_200};
 
@@ -17,6 +20,12 @@ export const Container = styled.button`
     font-size: 24px;
 
     color: ${({ theme }) => theme.COLORS.WHITE};
+    margin-bottom: 8px;
+  }
+
+  > P {
+    color: ${({ theme }) => theme.COLORS.GRAY_200};
+    margin: 15px 0;
   }
 
   > footer {

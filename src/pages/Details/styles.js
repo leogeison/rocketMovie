@@ -14,25 +14,19 @@ export const Container = styled.div`
     grid-area: Content;
     overflow-y: scroll;
     padding: 40px 0;
-
   }
 
   > main::-webkit-scrollbar {
-      width: 8px;
-    
-    }
-    
-    > main::-webkit-scrollbar-thumb {
-      background-color: ${({ theme }) => theme.COLORS.SALMON};
-      border-radius: 8px;
-    
-    }
+    width: 8px;
+  }
 
-
+  > main::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.SALMON};
+    border-radius: 8px;
+  }
 `;
 
 export const Content = styled.div`
-  
   margin: 0 123px;
 
   display: flex;
@@ -48,10 +42,16 @@ export const Content = styled.div`
     }
   }
 
+  .title {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 24px 0;
+  }
+
   > h1 {
     font-size: 36px;
     font-weight: 500;
-    margin: 24px 0;
   }
 
   > p {

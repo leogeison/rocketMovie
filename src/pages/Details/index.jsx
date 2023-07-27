@@ -3,6 +3,7 @@ import { Container, Content, Writer } from './styles';
 import { Header } from '../../components/Header';
 import { ButtonText } from '../../components/ButtonText';
 import { Tag } from '../../components/Tag';
+import { Rating } from '../../components/Rating';
 
 import { FiArrowLeft, FiClock } from 'react-icons/fi';
 
@@ -17,7 +18,10 @@ export function Details() {
             <ButtonText title="Voltar" />
           </div>
 
-          <h1>Interestellar</h1>
+          <div className="title">
+            <h1>Interestellar</h1>
+            <Rating />
+          </div>
           <Writer>
             <img src="https://github.com/leogeison.png" alt="foto do usuário" />
 
