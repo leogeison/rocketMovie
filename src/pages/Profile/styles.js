@@ -21,7 +21,7 @@ export const Container = styled.div`
     a {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: ${({ theme }) => theme.COLORS.SALMON};
     }
   }
