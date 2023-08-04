@@ -40,6 +40,10 @@ export const Content = styled.div`
     > svg {
       color: ${({ theme }) => theme.COLORS.SALMON};
     }
+
+    >:nth-child(3) {
+      margin-left: auto;
+    }
   }
 
   .title {

@@ -16,7 +16,9 @@ export function Details() {
           <div className="backButton">
             <FiArrowLeft />
             <ButtonText title="Voltar" />
+          <ButtonText title="Excluir filme" />
           </div>
+
 
           <div className="title">
             <h1>Interestellar</h1>
