@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   width: 100%;
@@ -40,14 +41,12 @@ export const MySection = styled.div`
   }
 `;
 
-export const NewMovie = styled.button`
+export const NewMovie = styled(Link)`
   width: 207px;
   height: 48px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.COLORS.SALMON};
   color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
-
-  border: none;
 
   display: flex;
   align-items: center;

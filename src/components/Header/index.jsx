@@ -1,27 +1,34 @@
-import { Container, Profile, Logout, Brand, Search } from './styles';
+import {
+  Container,
+  Profile,
+  ProfileImage,
+  Logout,
+  Brand,
+  Search
+} from './styles';
 import { Input } from '../../components/Input';
 import { FiSearch } from 'react-icons/fi';
 
 export function Header() {
   return (
     <Container>
-     <Brand>
-     <h1>RocketMovies</h1>
-     </Brand>
-     
-     <Search>
-     <Input placeholder="Pesquisar pelo título" icon={FiSearch}/>
-      
-     </Search>
+      <Brand>
+        <h1>RocketMovies</h1>
+      </Brand>
 
-     
-      <Profile> 
+      <Search>
+        <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+      </Search>
+
+      <Profile>
         <div>
           <strong>Léo Geison</strong>
           <Logout>sair</Logout>
         </div>
 
-        <img src="https://github.com/leogeison.png" alt="foto do usuário" />
+        <ProfileImage to="/profile">
+          <img src="https://github.com/leogeison.png" alt="foto do usuário" />
+        </ProfileImage>
       </Profile>
     </Container>
   );
