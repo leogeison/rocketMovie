@@ -6,6 +6,7 @@ const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({});
+
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password });
@@ -25,6 +26,13 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOut() {
+    const token = localStorage.removeItem('@rocketmovie:token');
+    const user = localStorage.removeItem('@rocketmovie:user');
+
+    setData({});
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('@rocketmovie:token');
     const user = localStorage.getItem('@rocketmovie:user');
@@ -40,7 +48,13 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        user: data.user
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

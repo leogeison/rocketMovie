@@ -6,10 +6,12 @@ import {
   Brand,
   Search
 } from './styles';
+import { useAuth } from '../../hooks/auth';
 import { Input } from '../../components/Input';
 import { FiSearch } from 'react-icons/fi';
 
 export function Header() {
+  const { signOut } = useAuth();
   return (
     <Container>
       <Brand>
@@ -23,7 +25,7 @@ export function Header() {
       <Profile>
         <div>
           <strong>Léo Geison</strong>
-          <Logout>sair</Logout>
+          <Logout onClick={signOut}>sair</Logout>
         </div>
 
         <ProfileImage to="/profile">
