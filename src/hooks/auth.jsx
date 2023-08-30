@@ -15,7 +15,8 @@ function AuthProvider({ children }) {
       localStorage.setItem('@rocketmovie:user', JSON.stringify(user));
       localStorage.setItem('@rocketmovie:token', token);
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common['authorization'] = `Bearer ${token}`;
+
       setData({ user, token });
     } catch (error) {
       if (error.message) {
@@ -33,12 +34,29 @@ function AuthProvider({ children }) {
     setData({});
   }
 
+  async function updateProfile({ user }) {
+    try {
+      await api.put('/users', user);
+      localStorage.setItem('@rocketmovie:user', JSON.stringify(user));
+
+      setData({ user, token: data.token });
+      alert("Perfil atualizado!");
+
+    } catch (error) {
+      if (error.message) {
+        alert(error.response.data.message);
+      } else {
+        alert('não foi possivel atualizar o perfil.');
+      }
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('@rocketmovie:token');
     const user = localStorage.getItem('@rocketmovie:user');
 
     if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.common['authorization'] = `Bearer ${token}`;
 
       setData({
         token,
@@ -52,6 +70,7 @@ function AuthProvider({ children }) {
       value={{
         signIn,
         signOut,
+        updateProfile,
         user: data.user
       }}
     >
