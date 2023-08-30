@@ -9,9 +9,13 @@ import {
 import { useAuth } from '../../hooks/auth';
 import { Input } from '../../components/Input';
 import { FiSearch } from 'react-icons/fi';
+import { api } from '../../services/api';
 
 export function Header() {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
   return (
     <Container>
       <Brand>
@@ -24,12 +28,12 @@ export function Header() {
 
       <Profile>
         <div>
-          <strong>Léo Geison</strong>
+          <strong>{user.name}</strong>
           <Logout onClick={signOut}>sair</Logout>
         </div>
 
         <ProfileImage to="/profile">
-          <img src="https://github.com/leogeison.png" alt="foto do usuário" />
+          <img src={avatarUrl} alt={user.name} />
         </ProfileImage>
       </Profile>
     </Container>
