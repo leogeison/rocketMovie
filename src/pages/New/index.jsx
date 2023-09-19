@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/Header';
@@ -8,6 +9,17 @@ import { Container, Form } from './styles';
 import { Button } from '../../components/Button';
 
 export function New() {
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
+
+  function handleAddTag() {
+    setTags(prevState => [...prevState, newTag]);
+    setNewTag('');
+  }
+
+  function handleRemoveTag(deleted) {
+    setTags(prevState => prevState.filter(tag => tag !== deleted));
+  }
   return (
     <Container>
       <Header />
@@ -28,8 +40,21 @@ export function New() {
           </div>
           <TextArea placeholder="Observações" />
           <div className="tags">
-            <NoteItem value="Comédia" />
-            <NoteItem isNew placeholder=" novo marcador" />
+            {tags.map((tag, index) => (
+              <NoteItem
+                key={String(index)}
+                value={tag}
+                onClick={() => handleRemoveTag(tag)}
+              />
+            ))}
+
+            <NoteItem
+              isNew
+              placeholder=" novo marcador"
+              onChange={e => setNewTag(e.target.value)}
+              value={newTag}
+              onClick={handleAddTag}
+            />
           </div>
           <Button title="Salvar" />
         </Form>

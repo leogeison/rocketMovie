@@ -76,7 +76,7 @@ export function Profile() {
           onChange={e => setEmail(e.target.value)}
         />
         <Input
-          placeholder="Senha stual"
+          placeholder="Senha atual"
           type="password"
           icon={FiLock}
           value={passwordOld}

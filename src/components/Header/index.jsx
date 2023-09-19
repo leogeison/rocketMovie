@@ -10,6 +10,7 @@ import { useAuth } from '../../hooks/auth';
 import { Input } from '../../components/Input';
 import { FiSearch } from 'react-icons/fi';
 import { api } from '../../services/api';
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
 export function Header() {
   const { signOut, user } = useAuth();
