@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Header } from '../../components/Header';
@@ -8,9 +9,17 @@ import { NoteItem } from '../../components/NoteItem';
 import { Container, Form } from './styles';
 import { Button } from '../../components/Button';
 
+import { api } from '../../services/api';
+
 export function New() {
+  const [title, setTitle] = useState('');
+  const [rating, setRating] = useState('');
+  const [description, setDescription] = useState('');
+
   const [tags, setTags] = useState([]);
   const [newTag, setNewTag] = useState('');
+
+  const navigate = useNavigate();
 
   function handleAddTag() {
     setTags(prevState => [...prevState, newTag]);
@@ -19,6 +28,34 @@ export function New() {
 
   function handleRemoveTag(deleted) {
     setTags(prevState => prevState.filter(tag => tag !== deleted));
+  }
+
+  async function handleNewNote() {
+    if (!title) {
+      return alert('Digite o titulo da nota');
+    }
+
+    const isRatingValid = rating >= 0 && rating <= 5;
+
+    if (!isRatingValid) {
+      return alert('A nota do filme deve ser entre 0 e 5');
+    }
+
+    if (newTag) {
+      return alert(
+        'A tag esta pendente para adicionar. Clique para adicionar ou remover'
+      );
+    }
+
+    await api.post('/notes', {
+      title,
+      description,
+      rating,
+      tags
+    });
+
+    alert('Nota do filme criada com sucesso!');
+    navigate('/');
   }
   return (
     <Container>
@@ -35,10 +72,24 @@ export function New() {
           </header>
 
           <div className="inputs">
-            <Input placeholder="Titulo" />
-            <Input placeholder="Sua nota (de 0 a 5)" />
+            <Input
+              placeholder="Titulo"
+              onChange={e => setTitle(e.target.value)}
+            />
+
+            <Input
+              placeholder="Sua nota (de 0 a 5)"
+              type="number"
+              min="0"
+              max="5"
+              value={rating}
+              onChange={e => setRating(e.target.value)}
+            />
           </div>
-          <TextArea placeholder="Observações" />
+          <TextArea
+            placeholder="Observações"
+            onChange={e => setDescription(e.target.value)}
+          />
           <div className="tags">
             {tags.map((tag, index) => (
               <NoteItem
@@ -56,7 +107,7 @@ export function New() {
               onClick={handleAddTag}
             />
           </div>
-          <Button title="Salvar" />
+          <Button title="Salvar" onClick={handleNewNote} />
         </Form>
       </main>
     </Container>
