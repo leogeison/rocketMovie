@@ -7,16 +7,17 @@ import {
   Search
 } from './styles';
 import { useAuth } from '../../hooks/auth';
-import { Input } from '../../components/Input';
-import { FiSearch } from 'react-icons/fi';
 import { api } from '../../services/api';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
 
-export function Header() {
+export function Header({children}) {
+  
   const { signOut, user } = useAuth();
   const avatarUrl = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
     : avatarPlaceholder;
+
+   
   return (
     <Container>
       <Brand>
@@ -24,7 +25,7 @@ export function Header() {
       </Brand>
 
       <Search>
-        <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+        {children}
       </Search>
 
       <Profile>
