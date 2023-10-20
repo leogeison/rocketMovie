@@ -21,6 +21,10 @@ export function New() {
 
   const navigate = useNavigate();
 
+  function handleBack() {
+    navigate(-1);
+  }
+
   function handleAddTag() {
     setTags(prevState => [...prevState, newTag]);
     setNewTag('');
@@ -55,7 +59,7 @@ export function New() {
     });
 
     alert('Nota do filme criada com sucesso!');
-    navigate('/');
+    handleBack();
   }
   return (
     <Container>
